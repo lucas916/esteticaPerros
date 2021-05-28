@@ -66,12 +66,12 @@ public class ControladorServicios {
                 precio = suma-descuento;
                 JOptionPane.showMessageDialog(null, "El precio es: $ " + precio);
             } 
-        } else if((grande == true) && (pequeño == true) && (mediano == true) 
+        }else if((grande == true) && (pequeño == true) && (mediano == true) 
                     || (grande == true) && (pequeño == true) && (mediano == false) 
                     ||(grande == true) && (pequeño == false ) && (mediano == true) 
                     || (grande == false) && (pequeño == true) && (mediano == true) ){
                JOptionPane.showMessageDialog(null, "Acción no permitida" );
-            }// cierraconduicional  perro grande
+            } // cierraconduicional  perro grande
         
     } // cierra el mètodo calcular precio perro pequeño
     
@@ -123,12 +123,12 @@ public class ControladorServicios {
                 precio = suma-descuento;
                 JOptionPane.showMessageDialog(null, "El precio es: $ " + precio);
             } 
-        } else if((grande == true) && (pequeño == true) && (mediano == true) 
+        }else if((grande == true) && (pequeño == true) && (mediano == true) 
                     || (grande == true) && (pequeño == true) && (mediano == false) 
                     ||(grande == true) && (pequeño == false ) && (mediano == true) 
                     || (grande == false) && (pequeño == true) && (mediano == true) ){
                JOptionPane.showMessageDialog(null, "Acción no permitida" );
-            }// cierraconduicional  perro grande
+            } // cierraconduicional  perro grande
         
     } // cierra el mètodo  calcular precio perro mediano
     public void calcularPrecioPerroGrande(boolean baño , boolean motilada , boolean profilaxis , boolean grande , boolean mediano , boolean pequeño  ){
@@ -179,12 +179,12 @@ public class ControladorServicios {
                 precio = suma-descuento;
                 JOptionPane.showMessageDialog(null, "El precio es: $ " + precio);
             } 
-        } else if((grande == true) && (pequeño == true) && (mediano == true) 
+        }else if((grande == true) && (pequeño == true) && (mediano == true) 
                     || (grande == true) && (pequeño == true) && (mediano == false) 
                     ||(grande == true) && (pequeño == false ) && (mediano == true) 
                     || (grande == false) && (pequeño == true) && (mediano == true) ){
                JOptionPane.showMessageDialog(null, "Acción no permitida" );
-            }// cierraconduicional  perro grande
+            } // cierraconduicional  perro grande
         
     } // cierra el mètodo calcular precio perro grande
     

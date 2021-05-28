@@ -6,13 +6,16 @@
 package com.estetica_perros.vista;
 
 import com.estetica_perros.modelo.Perro;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,8 +24,10 @@ import javax.swing.JOptionPane;
 public class JIFRegistroPerros extends javax.swing.JFrame {
 
     ArrayList<Perro> lista = new ArrayList<Perro>();
+    DefaultTableModel model ;
     public JIFRegistroPerros() {
         initComponents();
+        model =(DefaultTableModel)this.JTableRegistroPerros.getModel();
         
     }
 
@@ -49,6 +54,8 @@ public class JIFRegistroPerros extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTableRegistroPerros = new javax.swing.JTable();
         cbxCarnetVacunas = new javax.swing.JComboBox<>();
+        btnAgregar = new javax.swing.JButton();
+        btnMostrarRegistro = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuInicio = new javax.swing.JMenu();
         mnuSalir = new javax.swing.JMenuItem();
@@ -97,6 +104,20 @@ public class JIFRegistroPerros extends javax.swing.JFrame {
 
         cbxCarnetVacunas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
 
+        btnAgregar.setText("AGREGAR A LA TABLA");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnMostrarRegistro.setText("MOSTRAR REGISTRO");
+        btnMostrarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarRegistroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -120,9 +141,16 @@ public class JIFRegistroPerros extends javax.swing.JFrame {
                             .addComponent(txtNombrePerro)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addComponent(cbxCarnetVacunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(80, 80, 80)
-                                .addComponent(btnGuardar)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAgregar)
+                                .addGap(45, 45, 45)))))
                 .addGap(0, 38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(btnMostrarRegistro)
+                .addGap(136, 136, 136))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,11 +174,15 @@ public class JIFRegistroPerros extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCarnetVacunas)
-                    .addComponent(btnGuardar)
-                    .addComponent(cbxCarnetVacunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxCarnetVacunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrarRegistro)
+                    .addComponent(btnGuardar))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         mnuInicio.setText("INICIO");
@@ -181,86 +213,93 @@ public class JIFRegistroPerros extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//    public void escribirFichero() {
-//        
-//        FileWriter fichero = null;
-//        
-//        try{
-//            fichero = new FileWriter("scr/AlmacenmientoPerros.txt");
-//            PrintWriter prinW = new PrintWriter(fichero);
-//            
-//           // printW.println(lista);
-//            
-//        } catch (IOException ex){
-//            System.out.println("Error al guardar el archivo" + ex.getMessage());
-//        } finally{
-//            try{
-//                fichero.close();
-//            } catch(IOException ex){
-//                    System.out.println("Error al cerrar el archivo" + ex.getMessage());
-//                }
-//        }
-//    }
+
     private void mnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalirActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_mnuSalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if((txtNombrePerro.getText().equals("")) || (txtPeso.getText().equals("")) || 
-                (txtRaza.getText().equals("")) || (txtTamanio.getText().equals(""))){
-            JOptionPane.showMessageDialog(rootPane, "Debe de diligencia todos los campos");
-        } else {
-        Perro perro = new Perro(txtNombrePerro.getText(), txtPeso.getText() , txtRaza.getText() , txtTamanio.getText(), cbxCarnetVacunas.getSelectedItem().toString() );
-        //public Perro(String nombre, double peso, String raza, String tamaño, boolean carnetVacunas)
-        lista.add(perro);
-        JOptionPane.showMessageDialog(rootPane, "GUARDADO CON ÉXITO");
-        JOptionPane.showMessageDialog(rootPane, "El registro ha finalizado, tanto su usted como su perro han quedado registrados en el sistema");
+        try{
+        FileWriter guardar = new FileWriter("src/datosPerros.txt");
+        for(int i= 0; i < this.JTableRegistroPerros.getRowCount(); i++){   
+//            guardar.write(lista.get(i).toString() + "\n");
+            guardar.write(model.getValueAt(i, 0) + "\n");
+            guardar.write(model.getValueAt(i, 1) + "\n");
+            guardar.write(model.getValueAt(i, 2) + "\n");
+            guardar.write(model.getValueAt(i, 3) + "\n");
+            guardar.write(model.getValueAt(i, 4) + "\n");
+            
+        }
+        guardar.close();
+        JOptionPane.showMessageDialog(rootPane, "Datos guardados");
         JIFLoging_ abrir = new JIFLoging_();
         abrir.setVisible(true);
-        
-        
-        }
-        
-        
-        mostrar();
-        txtNombrePerro.setText("");
-        txtPeso.setText("");
-        txtRaza.setText("");
-        txtTamanio.setText("");
-        cbxCarnetVacunas.setSelectedItem("");
-        
+    }catch(Exception x){
+        JOptionPane.showMessageDialog(rootPane, "Error al intentar guardar el archivo");
+    
+    }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-     public void mostrar(){
-        String matriz [][] = new String [lista.size()][5];
-        
-            for(int i= 0; i< lista.size(); i++){
-                matriz[i][0]= lista.get(i).getNombre();
-                matriz[i][1]= lista.get(i).getPeso();
-                matriz[i][2]= lista.get(i).getRaza();
-                matriz[i][3]= lista.get(i).getTamaño();
-                matriz[i][4]= lista.get(i).isCarnetVacunas();
-                
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
+                if ((txtNombrePerro.getText().equals("")) || (txtPeso.getText().equals(""))
+                || (txtRaza.getText().equals("")) || (txtTamanio.getText().equals(""))) {
+            JOptionPane.showMessageDialog(rootPane, "Debe de diligencia todos los campos");
+        } else {
+            model.addRow(new Object[]{txtNombrePerro.getText(), txtPeso.getText(),
+                txtTamanio.getText(), txtRaza.getText()});
+            txtNombrePerro.setText("");
+            txtPeso.setText("");
+            txtRaza.setText("");
+            txtTamanio.setText("");
+            cbxCarnetVacunas.setSelectedItem("");
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnMostrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarRegistroActionPerformed
+        String aux = "src/datosPerros.txt";
+        String nombrePerro = txtNombrePerro.getText();
+        String peso = txtPeso.getText();
+        String tamanio = txtTamanio.getText();
+        String raza = txtRaza.getText();
+        String carnetVacunas = cbxCarnetVacunas.getSelectedItem().toString();
+
+        Scanner linea = null;
+
+        File doc = new File(aux);
+        try {
+            linea = new Scanner(doc);
+
+            while (linea.hasNextLine()) {
+                nombrePerro = linea.nextLine();
+                peso = linea.nextLine();
+                tamanio = linea.nextLine();
+                raza = linea.nextLine();
+                carnetVacunas = linea.nextLine();
+
+                model.addRow(new Object[]{nombrePerro, peso, tamanio, raza, carnetVacunas});
+
             }
             
-        JTableRegistroPerros.setModel(new javax.swing.table.DefaultTableModel(
-            matriz,
-            new String [] {
-                "NOMBRE", "PESO", "PESO", "TAMAÑO", "CARNET DE VACUNAS"
-            }
-        ));
-            
-    }
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(rootPane, "Error al intenta abrir el archivo");
+
+        }
+    }//GEN-LAST:event_btnMostrarRegistroActionPerformed
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTableRegistroPerros;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnMostrarRegistro;
     private javax.swing.JComboBox<String> cbxCarnetVacunas;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenuBar jMenuBar1;

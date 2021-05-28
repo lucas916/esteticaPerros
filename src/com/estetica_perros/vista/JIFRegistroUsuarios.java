@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -23,7 +24,7 @@ import java.io.IOException;
  */
 public class JIFRegistroUsuarios extends javax.swing.JFrame {
 
-    private ControladorUsuario llenado = new ControladorUsuario();
+    //private ControladorUsuario llenado = new ControladorUsuario();
     ArrayList<Usuario> lista = new ArrayList<Usuario>();
     public JIFRegistroUsuarios() {
         initComponents();
@@ -52,13 +53,14 @@ public class JIFRegistroUsuarios extends javax.swing.JFrame {
         lblFecha = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
-        btnAbrir = new javax.swing.JButton();
+        btnMostrarRegistro = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuInicio = new javax.swing.JMenu();
         mnuSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jInternalFrame1.setTitle("REGISTRO PERSONAS");
         jInternalFrame1.setEnabled(false);
         jInternalFrame1.setVisible(true);
 
@@ -101,17 +103,17 @@ public class JIFRegistroUsuarios extends javax.swing.JFrame {
 
         lblFecha.setText("* FECHA DEL REGISTRO:");
 
-        btnAgregar.setText("AGREGAR");
+        btnAgregar.setText("AGREGAR A LA TABLA");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
 
-        btnAbrir.setText("ABRIR");
-        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrarRegistro.setText("MOSTRAR REGISTRO");
+        btnMostrarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirActionPerformed(evt);
+                btnMostrarRegistroActionPerformed(evt);
             }
         });
 
@@ -137,24 +139,26 @@ public class JIFRegistroUsuarios extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jInternalFrame1Layout.createSequentialGroup()
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                                    .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                                .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jInternalFrame1Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(73, 73, 73))))
+                                .addGap(74, 74, 74)
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(77, Short.MAX_VALUE))))
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(btnMostrarRegistro)
+                        .addGap(110, 110, 110)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -175,21 +179,23 @@ public class JIFRegistroUsuarios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCedula)
-                    .addComponent(btnAbrir))
+                    .addComponent(lblCedula))
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCelular)
-                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar))
+                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFecha)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar))
+                    .addComponent(btnAgregar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrarRegistro)
+                    .addComponent(btnGuardar))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         mnuInicio.setText("INICIO");
@@ -233,33 +239,40 @@ public class JIFRegistroUsuarios extends javax.swing.JFrame {
 
     
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+    try{
+        FileWriter guardar = new FileWriter("src/datosUsuio.txt");
+        for(int i= 0; i < this.jTableRegistroPersonas.getRowCount(); i++){   
+//            guardar.write(lista.get(i).toString() + "\n");
+            guardar.write(model.getValueAt(i, 0) + "\n");
+            guardar.write(model.getValueAt(i, 1) + "\n");
+            guardar.write(model.getValueAt(i, 2) + "\n");
+            guardar.write(model.getValueAt(i, 3) + "\n");
+            guardar.write(model.getValueAt(i, 4) + "\n");
+            guardar.write(model.getValueAt(i, 5) + "\n");
+        }
+        guardar.close();
+        JOptionPane.showMessageDialog(rootPane, "Datos guardados");
+        JIFRegistroPerros abrir = new JIFRegistroPerros();
+        abrir.setVisible(true);
+    }catch(Exception x){
+        JOptionPane.showMessageDialog(rootPane, "Error al intentar guardar el archivo " );
+    
+    }
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
         if ((txtNombrePersona.getText().equals("")) || (txtCedula.getText().equals(""))
                 || (txtContrasenia.getText().equals("")) || (txtCorreo.getText().equals(""))
                 || (txtCelular.getText().equals("")) || (txtFecha.getText().equals(""))) {
             JOptionPane.showMessageDialog(rootPane, "Debe de diligencia todos los campos");
+        }else{
+            model.addRow(new Object[]{txtContrasenia.getText(), txtCorreo.getText(), 
+                txtNombrePersona.getText(), txtCedula.getText() , txtCelular.getText(), txtFecha.getText()});
         }
-        try {
-            String nombre = "";
-            JFileChooser file = new JFileChooser();
-            file.showSaveDialog(this);
-            File guardar = file.getSelectedFile();
-            if (guardar != null) {
-                FileWriter salvar = new FileWriter(guardar + (".txt"));
-                for (int i = 0; i < lista.size(); i++) {
-                    salvar.write(lista.get(i).toString() + "\n");
-                }
-                salvar.close();
-            }
-
-        } catch (Exception x) {
-            JOptionPane.showMessageDialog(rootPane, "Error" + x.toString());
-        }
-  
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
-        model.addRow(new Object[]{txtContrasenia.getText(), txtCorreo.getText(), txtNombrePersona.getText(), txtCedula.getText() , txtCelular.getText(), txtFecha.getText()});
         txtContrasenia.setText("");
         txtCedula.setText("");
         txtCelular.setText("");
@@ -268,39 +281,46 @@ public class JIFRegistroUsuarios extends javax.swing.JFrame {
         txtFecha.setText("");
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-    
-    String aux = "";
-    try{
-        JFileChooser file = new JFileChooser();
-        file.showOpenDialog(this);
-        File abre = file.getSelectedFile();
-        aux = abre.getPath();
-    }catch(Exception x){
-        JOptionPane.showMessageDialog(rootPane, "Error" + x.toString());
-    }
-    Scanner linea = null;
-    lista.clear();
-    File doc_le = new File (aux);
-    try{
-        linea = new Scanner (doc_le);
-        while(linea.hasNextLine()){
-           //lista.add(linea.);
+    private void btnMostrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarRegistroActionPerformed
+        String aux = "src/datosUsuio.txt";
+        String nombre = txtNombrePersona.getText();
+        String correo = txtCorreo.getText();
+        String contrasenia = txtContrasenia.getText();
+        String cedula = txtCedula.getText();
+        String celular = txtCedula.getText();
+        String fecha = txtFecha.getText();
+        Scanner linea = null;
+
+        File doc = new File(aux);
+        try {
+            linea = new Scanner(doc);
+
+            while (linea.hasNextLine()) {
+                nombre = linea.nextLine();
+                correo = linea.nextLine();
+                contrasenia = linea.nextLine();
+                cedula = linea.nextLine();
+                celular = linea.nextLine();
+                fecha = linea.nextLine();
+
+                model.addRow(new Object[]{nombre, correo, contrasenia, cedula, celular, fecha});
+
+            }
+            JIFRegistroPerros abrir = new JIFRegistroPerros();
+            abrir.setVisible(true);
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(rootPane, "Error al intenta abrir el archivo");
 
         }
-    }catch (Exception j){
-        JOptionPane.showMessageDialog(rootPane, "Error " + j.toString());
-    }
-    
-    }//GEN-LAST:event_btnAbrirActionPerformed
+    }//GEN-LAST:event_btnMostrarRegistroActionPerformed
 
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnMostrarRegistro;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;

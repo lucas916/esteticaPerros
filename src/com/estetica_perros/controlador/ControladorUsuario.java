@@ -8,8 +8,16 @@ package com.estetica_perros.controlador;
 import UsuarioExcepcion.UsuarioExcepcion;
 import com.estetica_perros.modelo.Rol;
 import com.estetica_perros.modelo.Usuario;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -65,6 +73,6 @@ public class ControladorUsuario {
         }
 
         return matcher.find() && espacios;
-    }
-  
+    } 
+
 }

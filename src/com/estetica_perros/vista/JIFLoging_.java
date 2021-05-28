@@ -22,6 +22,8 @@ public class JIFLoging_ extends javax.swing.JFrame {
         controlarEstadosMenus(false);
         txtCorreo.setText("lucaslopez@umanizales.edu.co");
         txtContrasenia.setText("12345");
+        
+        
     }
 
     /**
@@ -182,19 +184,28 @@ public class JIFLoging_ extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
-        
-        
-        if(txtCorreo.getText().equals("" ) || (txtContrasenia.getPassword().length == 0)||
-                (chcAdministrador.getState()==false) && (chcUsuario.getState() == false)){
+ //TODO add your handling code here:
+
+        if (txtCorreo.getText().equals("") || (txtContrasenia.getPassword().length == 0)
+                || (chcAdministrador.getState() == false) && (chcUsuario.getState() == false)) {
             JOptionPane.showMessageDialog(rootPane, "Debe diligenciar todos los campos");
         } else {
-            if(controlUsuarios.verificarUsuario(txtCorreo.getText(), txtContrasenia.getText())){
+            if (controlUsuarios.verificarUsuario(txtCorreo.getText(), txtContrasenia.getText())) {
                 jifLoging.hide();
-                if(chcAdministrador.getState() == true){
-                controlarEstadosMenus(true); 
+                if (chcAdministrador.getState() == true) {
+                    controlarEstadosMenus(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Los datos ingresados son errados");
             }
-            }else {
+         if (controlUsuarios.verificarUsuario(txtCorreo.getText(), txtContrasenia.getText())) {
+                jifLoging.hide();
+                if (chcUsuario.getState() == true) {
+                    mnuVerTablasDeRegistro.setEnabled(false);
+                    mnuVerTabladePreciosSinDescuento.setEnabled(true);
+                    mnuVerTablasDeRegistro.setEnabled(false);
+                    mnuCotizar.setEnabled(true);
+                }} else {
                 JOptionPane.showMessageDialog(rootPane, "Los datos ingresados son errados");
             }
         }
@@ -204,6 +215,9 @@ public class JIFLoging_ extends javax.swing.JFrame {
     public void controlarEstadosMenus(boolean estado){
         //mnuModificarContenido.setEnabled(estado);
         mnuVerTablasDeRegistro.setEnabled(estado);
+        mnuVerTabladePreciosSinDescuento.setEnabled(estado);
+        mnuVerTablasDeRegistro.setEnabled(estado);
+        mnuCotizar.setEnabled(estado);
     }
     
     private void mnuVerTabladePreciosSinDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVerTabladePreciosSinDescuentoActionPerformed
@@ -215,9 +229,10 @@ public class JIFLoging_ extends javax.swing.JFrame {
     private void mnuVerTablasDeRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVerTablasDeRegistroActionPerformed
         // TODO add your handling code here:
         JIFRegistroPerros abrirR = new JIFRegistroPerros();
-        JIFRegistroUsuarios abrirU = new JIFRegistroUsuarios();
         abrirR.setVisible(true);
+        JIFRegistroUsuarios abrirU = new JIFRegistroUsuarios();
         abrirU.setVisible(true);
+        
     }//GEN-LAST:event_mnuVerTablasDeRegistroActionPerformed
 
     private void mnuCotizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCotizarActionPerformed
